@@ -21,28 +21,33 @@
 ├── TestsUI/          # Автотесты для пользовательского интерфейса
 ├── Drivers/          # Настройки и инициализация WebDriver
 └── README.md         # Документация проекта
+
+
 🚀 Запуск автотестов
-Предварительные требования
+
+Предварительные требования:
 .NET 8 SDK
-
 Установленный браузер Chrome
-
 Запуск из терминала
+
+
 Клонируй репозиторий:
 
-Bash
-git clone https://github.com/KosmosGANG-QA-Automation/web-api-test-automation-csharp.git
+  `git clone` https://github.com/KosmosGANG-QA-Automation/web-api-test-automation-csharp.git
+
 Перейди в папку проекта:
 
-Bash
 cd web-api-test-automation-csharp
+
 Запусти все автотесты:
 
-Bash
 dotnet test
-📬 Контакты
-Автор: KosmosGANG
+
+
+
+
+📬 Автор: KosmosGANG
 
 Роль: QA Automation Engineer (C#)
 
-GitHub: https://github.com/KosmosGANG-QA-Automation
+* **GitHub:** [@KosmosGANG-QA-Automation](https://github.com/KosmosGANG-QA-Automation)
