@@ -31,7 +31,7 @@
 Клонируй репозиторий:
 
 Bash
-git clone [https://github.com/KosmosGANG-QA-Automation/web-api-test-automation-csharp.git](https://github.com/KosmosGANG-QA-Automation/web-api-test-automation-csharp.git)
+git clone https://github.com/KosmosGANG-QA-Automation/web-api-test-automation-csharp.git
 Перейди в папку проекта:
 
 Bash
@@ -45,4 +45,4 @@ dotnet test
 
 Роль: QA Automation Engineer (C#)
 
-GitHub: @KosmosGANG-QA-Automation
+GitHub: https://github.com/KosmosGANG-QA-Automation
