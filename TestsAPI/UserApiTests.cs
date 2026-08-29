@@ -1,4 +1,6 @@
-﻿using AqaPortfolioProject.Models;
+﻿using Allure.Net.Commons;
+using Allure.Net.Commons.Attributes;
+using AqaPortfolioProject.Models;
 using RestSharp;
 using System.Net;
 using System.Threading.Tasks;
@@ -6,6 +8,8 @@ using Xunit;
 
 namespace AqaPortfolioProject.TestsApi
 {
+    [AllureEpic("API Testing")]
+    [AllureFeature("ReqRes User Management")]
     public class UserApiTests
     {
         private readonly RestClient _client;
@@ -17,6 +21,9 @@ namespace AqaPortfolioProject.TestsApi
         }
 
         [Fact]
+        [AllureStory("GET /api/users/2 - Get Single User")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureIssue("3")]
         [Trait("Category", "API-Positive")]
         public async Task Get_UsersList_Should_Return_200OK()
         {
@@ -29,6 +36,9 @@ namespace AqaPortfolioProject.TestsApi
         }
 
         [Fact]
+        [AllureStory("GET /NotFound111 - Should Return 404 For Invalid Endpoint")]
+        [AllureSeverity(SeverityLevel.minor)]
+        [AllureIssue("4")]
         [Trait("Category", "API_Negative")]
         public async Task Get_UsersList_Should_Return_404ER()
         {
@@ -39,6 +49,9 @@ namespace AqaPortfolioProject.TestsApi
         }
 
         [Fact]
+        [AllureStory("POST /api/users - Create User")]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureIssue("1")] // Связываем с Issue #1 на GitHub
         [Trait("Category", "API-Positive")]
         public async Task Post_CreateUser_Should_Return_201Created_And_ValidDto()
         {
@@ -65,6 +78,9 @@ namespace AqaPortfolioProject.TestsApi
         }
 
         [Fact]
+        [AllureStory("PUT /api/users/2 - Update User")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureIssue("2")] // Связываем с Issue #2 на GitHub (например, таска на обновление)
         [Trait("Category", "API-Positive")]
         public async Task Put_UpdateUser_Should_Return_200OK_And_UpdatedData()
         {
