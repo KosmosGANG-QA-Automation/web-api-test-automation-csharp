@@ -28,8 +28,8 @@ namespace AqaPortfolioProject.TestsApi
         }
 
         [Fact]
-        [Trait("category", "API_Negative")]
-        public async Task Get_UsersList_Should_Return_400ER()
+        [Trait("Category", "API_Negative")]
+        public async Task Get_UsersList_Should_Return_404ER()
         {
             var request = new RestRequest("/NotFound111", Method.Get);
             RestResponse response = await _client.ExecuteAsync(request);

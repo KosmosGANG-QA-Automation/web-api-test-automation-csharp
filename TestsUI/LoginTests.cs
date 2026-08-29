@@ -14,9 +14,15 @@ namespace AqaPortfolioProject.TestsUI
 
         public LoginTests()
         {
-            _driver = new ChromeDriver();
-            _driver.Manage().Window.Maximize();
+            var options = new ChromeOptions();
+            options.AddArgument("--headless=new");
+            options.AddArgument("--no-sandbox");
+            options.AddArgument("--disable-dev-shm-usage");
 
+            // Инициализируем поле класса _driver с переданными опциями
+            _driver = new ChromeDriver(options);
+
+            _driver.Manage().Window.Maximize();
             _driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/login");
             _loginPage = new LoginPage(_driver);
         }

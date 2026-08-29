@@ -17,10 +17,16 @@
 ## 📁 Структура проекта
 
 ```text
-├── Pages/            # Page Object классы (описание элементов и локаторов)
-├── TestsUI/          # Автотесты для пользовательского интерфейса
-├── Drivers/          # Настройки и инициализация WebDriver
-└── README.md         # Документация проекта
+├── .github/
+│   └── workflows/
+│       └── dotnet-tests.yml    # Пайплайн автозапуска тестов (CI/CD)
+├── Pages/                      # Page Object классы (веб-страницы и локаторы)
+├── TestsAPI/                   # Автотесты для API (RestSharp)
+├── TestsUI/                    # Автотесты для UI (Selenium WebDriver)
+├── .gitignore                  # Исключения для Git
+├── AqaPortfolioProject.csproj  # Зависимости и конфигурация C# проекта
+├── AqaPortfolioProject.sln     # Solution-файл Visual Studio
+└── README.md                   # Документация проекта
 ```
 
 ## 🚀 Запуск автотестов
