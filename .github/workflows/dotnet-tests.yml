@@ -22,13 +22,13 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    # 2. Настраиваем окружение .NET 8
+    # 2. Настраиваем окружение .NET 9
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
 
-    # 3. Восстанавливаем зависимости (Nuget-пакеты)
+    # 3. Восстанавливаем зависимости (NuGet-пакеты)
     - name: Restore dependencies
       run: dotnet restore
 
@@ -48,9 +48,9 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: allure-results
-        path: "**/bin/Debug/net9.0/allure-results"
+        path: bin/Debug/net9.0/allure-results
 
-    # 7. Загрузка истории (пропускаем ошибку, если ветки gh-pages еще нет)
+    # 7. Загрузка истории
     - name: Load Allure report history
       uses: actions/checkout@v4
       if: always()
@@ -59,22 +59,13 @@ jobs:
         ref: gh-pages
         path: gh-pages
 
-    # 7.5 Поиск сгенерированных json-файлов Allure
-    - name: Find allure results
-      if: always()
-      run: |
-        echo "=== Поиск папок allure-results ==="
-        find . -type d -name "allure-results"
-        echo "=== Поиск json файлов с результатами ==="
-        find . -name "*-result.json"
-
     # 8. Генерация HTML отчета
     - name: Build Allure Report
       uses: simple-elf/allure-report-action@master
       if: always()
       id: allure-report
       with:
-        allure_results: allure-results
+        allure_results: bin/Debug/net9.0/allure-results
         gh_pages: gh-pages
         allure_history: allure-history
 
