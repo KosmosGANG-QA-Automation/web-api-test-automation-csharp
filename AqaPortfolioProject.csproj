@@ -27,9 +27,9 @@
   </ItemGroup>
 
   <ItemGroup>
-	<None Update="allureConfig.json">
+	<Content Include="allureConfig.json">
 		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</None>
+	</Content>
   </ItemGroup>
 
 </Project>
