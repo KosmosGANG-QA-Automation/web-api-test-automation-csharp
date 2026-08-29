@@ -9,7 +9,7 @@ on:
 
 # Права для публикации отчета в GitHub Pages
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -50,7 +50,7 @@ jobs:
         name: allure-results
         path: "**/bin/Debug/net9.0/allure-results"
 
-    # 7. Генерация Allure HTML отчёта
+    # 7. Загрузка истории (пропускаем ошибку, если ветки gh-pages еще нет)
     - name: Load Allure report history
       uses: actions/checkout@v4
       if: always()
@@ -59,19 +59,21 @@ jobs:
         ref: gh-pages
         path: gh-pages
 
+    # 8. Генерация HTML отчета
     - name: Build Allure Report
       uses: simple-elf/allure-report-action@master
       if: always()
       id: allure-report
       with:
-        allure_results: allure-results
+        allure_results: AqaPortfolioProject/bin/Debug/net9.0/allure-results
         gh_pages: gh-pages
         allure_history: allure-history
 
-    # 8. Публикация отчёта на GitHub Pages
+    # 9. Публикация отчёта на GitHub Pages
     - name: Deploy report to GitHub Pages
-      if: always()
       uses: peaceiris/actions-gh-pages@v3
+      if: always()
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
         publish_dir: allure-history
