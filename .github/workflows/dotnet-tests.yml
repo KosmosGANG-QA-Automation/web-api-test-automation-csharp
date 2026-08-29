@@ -34,12 +34,17 @@ jobs:
     - name: Run unit & API tests
       run: dotnet test --no-build --verbosity normal
 
+    # 5.1 Поиск сгенерированных файлов Allure (для отладки в логах)
+    - name: Find Allure directory
+      if: always()
+      run: |
+        echo "=== Ищем allure-results по всей файловой системе ==="
+        find . -name "allure-results" -type d
+
     # 6. Загрузка артефакта Allure
     - name: Upload Allure Results Artifact
       if: always()
       uses: actions/upload-artifact@v4
       with:
         name: allure-results
-        path: |
-          **/bin/Debug/**/allure-results
-          **/allure-results
+        path: "**/allure-results/**"
