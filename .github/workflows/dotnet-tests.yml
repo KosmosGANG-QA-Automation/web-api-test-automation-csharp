@@ -36,12 +36,10 @@ jobs:
       env:
         ALLURE_CONFIG: ${{ github.workspace }}/allureConfig.json
 
-    # 6. Загружаем сгенерированную папку из корня рабочей директории
+    # 6. Загружаем сгенерированную папку
     - name: Upload Allure Results Artifact
       if: always()
       uses: actions/upload-artifact@v4
       with:
         name: allure-results
-        path: |
-          allure-results
-          "**/allure-results"
+        path: '**/allure-results'

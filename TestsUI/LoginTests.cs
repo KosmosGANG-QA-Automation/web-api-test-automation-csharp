@@ -1,4 +1,5 @@
-﻿using AqaPortfolioProject.Pages;
+﻿using Allure.Net.Commons.Attributes;
+using AqaPortfolioProject.Pages;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
@@ -7,6 +8,8 @@ using Xunit;
 
 namespace AqaPortfolioProject.TestsUI
 {
+    [AllureEpic("UI Testing")]
+    [AllureFeature("Authentication System")]
     public class LoginTests : IDisposable
     {
         private readonly IWebDriver _driver;
