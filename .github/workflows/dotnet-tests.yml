@@ -30,9 +30,9 @@ jobs:
     - name: Build project
       run: dotnet build --no-restore
 
-    # 5. Запускаем тесты с указанием пути вывода отчетов напрямую в команду
+    # 5. Передаём путь к конфигу Allure напрямую в процесс тестов
     - name: Run unit & API tests
-      run: dotnet test --no-build --verbosity normal --logger "allure"
+      run: dotnet test --no-build --verbosity normal
       env:
         ALLURE_CONFIG: ${{ github.workspace }}/allureConfig.json
 
