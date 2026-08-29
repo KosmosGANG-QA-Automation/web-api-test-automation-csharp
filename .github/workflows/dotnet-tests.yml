@@ -59,13 +59,22 @@ jobs:
         ref: gh-pages
         path: gh-pages
 
+    # 7.5 Поиск сгенерированных json-файлов Allure
+    - name: Find allure results
+      if: always()
+      run: |
+        echo "=== Поиск папок allure-results ==="
+        find . -type d -name "allure-results"
+        echo "=== Поиск json файлов с результатами ==="
+        find . -name "*-result.json"
+
     # 8. Генерация HTML отчета
     - name: Build Allure Report
       uses: simple-elf/allure-report-action@master
       if: always()
       id: allure-report
       with:
-        allure_results: AqaPortfolioProject/bin/Debug/net9.0/allure-results
+        allure_results: allure-results
         gh_pages: gh-pages
         allure_history: allure-history
 
