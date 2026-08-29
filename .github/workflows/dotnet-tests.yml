@@ -65,7 +65,7 @@ jobs:
       if: always()
       id: allure-report
       with:
-        allure_results: allure-results
+        allure_results: AqaPortfolioProject/bin/Debug/net9.0/allure-results
         gh_pages: gh-pages
         allure_history: allure-history
 
