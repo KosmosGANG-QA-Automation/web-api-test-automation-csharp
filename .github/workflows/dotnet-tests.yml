@@ -69,11 +69,15 @@ jobs:
         gh_pages: gh-pages
         allure_history: allure-history
 
-    # 9. Публикация отчёта на GitHub Pages
-    - name: Deploy report to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
+    # 9. Загрузка собранного отчета для GitHub Pages
+    - name: Upload Pages artifact
       if: always()
+      uses: actions/upload-pages-artifact@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: gh-pages
-        publish_dir: allure-history
+        path: allure-history
+
+    # 10. Публикация отчёта на GitHub Pages
+    - name: Deploy to GitHub Pages
+      if: always()
+      id: deployment
+      uses: actions/deploy-pages@v4
