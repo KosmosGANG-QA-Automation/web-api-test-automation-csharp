@@ -48,7 +48,7 @@
 
 Перейди в папку проекта:
 
-cd web-api-test-automation-csharp
+cd c:/AqaPortfolioProject
 
 Запусти все автотесты:
 
