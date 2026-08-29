@@ -1,0 +1,35 @@
+name: Run C# Web API Tests
+
+# Когда запускать пайплайн
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Скачиваем код репозитория на виртуальную машину
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # 2. Настраиваем окружение .NET 8
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    # 3. Восстанавливаем зависимости (Nuget-пакеты)
+    - name: Restore dependencies
+      run: dotnet restore
+
+    # 4. Собираем проект
+    - name: Build project
+      run: dotnet build --no-restore
+
+    # 5. Запускаем все автотесты
+    - name: Run unit & API tests
+      run: dotnet test --no-build --verbosity normal
