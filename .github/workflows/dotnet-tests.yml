@@ -7,6 +7,12 @@ on:
   pull_request:
     branches: [ "main" ]
 
+# Права для публикации отчета в GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -43,3 +49,29 @@ jobs:
       with:
         name: allure-results
         path: "**/bin/Debug/net9.0/allure-results"
+
+    # 7. Генерация Allure HTML отчёта
+    - name: Load Allure report history
+      uses: actions/checkout@v4
+      if: always()
+      continue-on-error: true
+      with:
+        ref: gh-pages
+        path: gh-pages
+
+    - name: Build Allure Report
+      uses: simple-elf/allure-report-action@master
+      if: always()
+      id: allure-report
+      with:
+        allure_results: allure-results
+        gh_pages: gh-pages
+        allure_history: allure-history
+
+    # 8. Публикация отчёта на GitHub Pages
+    - name: Deploy report to GitHub Pages
+      if: always()
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: allure-history
