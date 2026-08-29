@@ -41,5 +41,5 @@ jobs:
       with:
         name: allure-results
         path: |
-          allure-results
-          "**/allure-results"
+          **/bin/Debug/**/allure-results
+          **/allure-results
