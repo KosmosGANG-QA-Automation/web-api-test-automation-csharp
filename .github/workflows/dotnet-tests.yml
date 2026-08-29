@@ -34,14 +34,6 @@ jobs:
     - name: Run unit & API tests
       run: dotnet test --no-build --verbosity normal
 
-    # 6. Загрузка артефакта Allure (универсальный путь)
-    - name: Upload Allure Results Artifact
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: allure-results
-        path: "**/allure-results"
-
     # 6. Загрузка артефакта Allure
     - name: Upload Allure Results Artifact
       if: always()
