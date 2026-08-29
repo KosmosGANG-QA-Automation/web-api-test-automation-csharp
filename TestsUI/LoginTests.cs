@@ -1,10 +1,11 @@
-﻿using Allure.Net.Commons.Attributes;
-using AqaPortfolioProject.Pages;
+﻿using AqaPortfolioProject.Pages;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
 using Xunit;
+using Allure.Xunit;
+using Allure.Xunit.Attributes;
 
 namespace AqaPortfolioProject.TestsUI
 {

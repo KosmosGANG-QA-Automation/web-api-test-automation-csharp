@@ -1,8 +1,8 @@
 {
   "allure": {
     "directory": "allure-results",
-    "links": {
-      "issue": "https://github.com/KosmosGANG-QA-Automation/web-api-test-automation-csharp/issues/{issue}"
-    }
+    "links": [
+      "https://github.com/KosmosGANG-QA-Automation/web-api-test-automation-csharp/issues/{issue}"
+    ]
   }
 }
