@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using AqaPortfolioProject.Models;
+using RestSharp;
 using System.Net;
 using System.Threading.Tasks;
 using Xunit;
@@ -36,6 +37,55 @@ namespace AqaPortfolioProject.TestsApi
 
             Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
         }
-       
+
+        [Fact]
+        [Trait("Category", "API-Positive")]
+        public async Task Post_CreateUser_Should_Return_201Created_And_ValidDto()
+        {
+            // 1. Arrange: создаем DTO объект запроса
+            var newUser = new UserRequestDto
+            {
+                Name = "morpheus",
+                Job = "leader"
+            };
+
+            var request = new RestRequest("/api/users", Method.Post);
+            // RestSharp сам сериализует объект newUser в JSON и подставит Content-Type application/json
+            request.AddJsonBody(newUser);
+
+            // 2. Act: отправляем запрос с десериализацией ответа в CreateUserResponseDto
+            RestResponse<CreateUserResponseDto> response = await _client.ExecuteAsync<CreateUserResponseDto>(request);
+
+            // 3. Assert: проверяем статус и валидируем поля DTO ответа
+            Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+            Assert.NotNull(response.Data);
+            Assert.Equal(newUser.Name, response.Data.Name);
+            Assert.Equal(newUser.Job, response.Data.Job);
+            Assert.False(string.IsNullOrEmpty(response.Data.Id), "ID пользователя не должен быть пустым");
+        }
+
+        [Fact]
+        [Trait("Category", "API-Positive")]
+        public async Task Put_UpdateUser_Should_Return_200OK_And_UpdatedData()
+        {
+            // 1. Arrange: обновляемые данные
+            var updatedUser = new UserRequestDto
+            {
+                Name = "morpheus",
+                Job = "zion resident"
+            };
+
+            var request = new RestRequest("/api/users/2", Method.Put);
+            request.AddJsonBody(updatedUser);
+
+            // 2. Act
+            RestResponse<UpdateUserResponseDto> response = await _client.ExecuteAsync<UpdateUserResponseDto>(request);
+
+            // 3. Assert
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.NotNull(response.Data);
+            Assert.Equal(updatedUser.Name, response.Data.Name);
+            Assert.Equal(updatedUser.Job, response.Data.Job);
+        }
     }
 }
