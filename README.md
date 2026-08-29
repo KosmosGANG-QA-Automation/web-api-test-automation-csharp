@@ -1,5 +1,7 @@
 # 🧪 Test Automation Framework | C# Selenium & xUnit
 
+[![Allure Report](https://img.shields.io/badge/Allure_Report-Online-brightgreen)](https://kosmosgang-qa-automation.github.io/web-api-test-automation-csharp/)
+
 ПО для автоматизации тестирования веб-интерфейса и API на C#. Проект подготовлен в качестве портфолио QA Automation Engineer.
 
 ---
@@ -19,14 +21,15 @@
 ```text
 ├── .github/
 │   └── workflows/
-│       └── dotnet-tests.yml    # Пайплайн автозапуска тестов (CI/CD)
-├── Pages/                      # Page Object классы (веб-страницы и локаторы)
-├── TestsAPI/                   # Автотесты для API (RestSharp)
-├── TestsUI/                    # Автотесты для UI (Selenium WebDriver)
-├── .gitignore                  # Исключения для Git
-├── AqaPortfolioProject.csproj  # Зависимости и конфигурация C# проекта
-├── AqaPortfolioProject.sln     # Solution-файл Visual Studio
-└── README.md                   # Документация проекта
+│       └── dotnet-tests.yml        # CI/CD пайплайн для GitHub Actions
+├── Pages/                          # Страницы/модели данных
+├── TestsAPI/                       # API автотесты
+├── TestsUI/                        # UI автотесты
+├── .gitignore                      # Игнорируемые файлы Git
+├── AqaPortfolioProject.csproj      # Файл проекта с конфигурацией копирования
+├── AqaPortfolioProject.sln         # Файл решения (Solution)
+├── README.md                       # Документация проекта
+└── allureConfig.json               # Конфигурация Allure и привязка к Issue
 ```
 
 ## 🚀 Запуск автотестов
