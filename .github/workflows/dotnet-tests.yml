@@ -30,21 +30,18 @@ jobs:
     - name: Build project
       run: dotnet build --no-restore
 
-    # 5. Запускаем все автотесты
+    # 5. Передаём путь к конфигу Allure напрямую в процесс тестов
     - name: Run unit & API tests
       run: dotnet test --no-build --verbosity normal
+      env:
+        ALLURE_CONFIG: ${{ github.workspace }}/allureConfig.json
 
-    # 5.1 Поиск сгенерированных файлов Allure (для отладки в логах)
-    - name: Find Allure directory
-      if: always()
-      run: |
-        echo "=== Ищем allure-results по всей файловой системе ==="
-        find . -name "allure-results" -type d
-
-    # 6. Загрузка артефакта Allure
+    # 6. Загружаем сгенерированную папку из корня рабочей директории
     - name: Upload Allure Results Artifact
       if: always()
       uses: actions/upload-artifact@v4
       with:
         name: allure-results
-        path: "**/allure-results/**"
+        path: |
+          allure-results
+          "**/allure-results"

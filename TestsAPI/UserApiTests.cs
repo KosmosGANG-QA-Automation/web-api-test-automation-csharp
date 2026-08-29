@@ -6,6 +6,9 @@ using System.Net;
 using System.Threading.Tasks;
 using Xunit;
 
+// Регистрируем Allure как кастомный репортер xUnit
+[assembly: CollectionBehavior(CollectionBehavior.CollectionPerAssembly)]
+
 namespace AqaPortfolioProject.TestsApi
 {
     [AllureEpic("API Testing")]
